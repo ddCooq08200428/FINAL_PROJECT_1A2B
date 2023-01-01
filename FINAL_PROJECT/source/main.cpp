@@ -79,7 +79,9 @@ int main()
 		if (gn.size() == 0)
 			cout << "No way!" << endl;
 	}
-}*/
+}
+*/
+
 class GuessMyNumber {
 public:
 	GuessMyNumber() {
