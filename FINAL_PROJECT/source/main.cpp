@@ -131,36 +131,57 @@ int main()
 {
 	GuessMyNumber gn;
 	int maxguess = 8;
+	int choice;
 
+	cout << "請選擇要甚麼功能(1是我們猜，2是電腦猜，3是結束程式)" << endl;
+	cin >> choice;
+	while (choice != 3)
+	{
+		if (choice == 1)
+		{
+			while (gn.size() > 0) {
+				cout << "Your guess: ";
+				string guess;
+				cin >> guess;
+				vector<string> best_sols;
+				int bestA = 0, bestB = 0;
+				for (int A = 0; A <= 4; ++A) {
+					for (int B = 0; B <= 4 - A; ++B) {
+						vector<string> sols = gn.trim(A, B, guess);
+						if (best_sols.size() < sols.size()) {
+							best_sols = sols;
+							bestA = A;
+							bestB = B;
+						}
+					}
+				}
+				gn.set_solutions(best_sols);
+				cout << bestA << "A" << bestB << "B" << endl;
 
-	while (gn.size() > 0) {
-		cout << "Your guess: ";
-		string guess;
-		cin >> guess;
-		vector<string> best_sols;
-		int bestA = 0, bestB = 0;
-		for (int A = 0; A <= 4; ++A) {
-			for (int B = 0; B <= 4 - A; ++B) {
-				vector<string> sols = gn.trim(A, B, guess);
-				if (best_sols.size() < sols.size()) {
-					best_sols = sols;
-					bestA = A;
-					bestB = B;
+				if (bestA == 4) {
+					cout << "恭喜猜對了" << endl;
+					break;
+				}
+				else if (gn.size() < 20) {
+					cout << "-----" << endl;
+					cout << "提示:" << endl;
+					gn.show();
+					cout << "-----" << endl;
 				}
 			}
+			cout << "請選擇要甚麼功能(1是我們猜，2是電腦猜，3是結束程式)" << endl;
+			cin >> choice;
 		}
-		gn.set_solutions(best_sols);
-		cout << bestA << "A" << bestB << "B" << endl;
-
-		if (bestA == 4) {
-			cout << "恭喜猜對了" << endl;
+		else if (choice == 2)
+		{
+			//電腦猜的程式
+			cout << "請選擇要甚麼功能(1是我們猜，2是電腦猜，3是結束程式)" << endl;
+			cin >> choice;
+		}
+		else
+		{
+			cout << "程式結束" << endl;
 			break;
-		}
-		else if (gn.size() < 20) {
-			cout << "-----" << endl;
-			cout << "提示:" << endl;
-			gn.show();
-			cout << "-----" << endl;
 		}
 	}
 }
