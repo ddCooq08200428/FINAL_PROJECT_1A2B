@@ -2,5 +2,6 @@
 C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(499,5): warning MSB8004: Output 目錄結尾不是結尾斜線。這個建置執行個體將會加入此斜線，因為這樣才能正確評估 Output 目錄。
   main.cpp
 C:\Users\Allen Chen\Desktop\FINAL_PROJECT_1A2B\FINAL_PROJECT\source\main.cpp(94,17): warning C4018: '<': signed/unsigned 不相符
-C:\Users\Allen Chen\Desktop\FINAL_PROJECT_1A2B\FINAL_PROJECT\source\main.cpp(209,8): warning C4101: 'k': 未參考的區域變數
+C:\Users\Allen Chen\Desktop\FINAL_PROJECT_1A2B\FINAL_PROJECT\source\main.cpp(210,8): warning C4101: 'k': 未參考的區域變數
+  LINK : 最後的累加連結找不到或未建置 ..\..\temp\debug\FINAL_Project.exe，正在執行完整連結
   FINAL_Project.vcxproj -> C:\Users\Allen Chen\Desktop\FINAL_PROJECT_1A2B\FINAL_PROJECT\temp\debug\FINAL_Project.exe

@@ -136,6 +136,7 @@ private:
 	vector<string> solutions;
 };
 
+
 int main(){
 	GuessMyNumber gn;
 	string testiii;
