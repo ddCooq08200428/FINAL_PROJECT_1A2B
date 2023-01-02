@@ -8,6 +8,8 @@
 #include <string.h>
 #include <time.h>
 
+
+
 using namespace std;
 int* aas;
 int* bbs;
@@ -76,18 +78,18 @@ public:
 		return sols;
 	}
 
-	void testsee(string testyyy)
+	void testsee(string testyyy,int testbbbiii[])
 	{
-		srand(time(NULL));
-		int bbb[4] = {0};
 		int aaa[4] = { 0 };
 		int wa = 0;
 		int wb = 0;
 		string pp = testyyy;
 		char p[8];
 		int i, j;
-		for (int k = 0; k < 4; k++) {
-			bbb[k] = rand() % 8999 + 1000;
+		int bbb[4];
+		for (i = 0; i < 4; i++)
+		{
+			bbb[i] = testbbbiii[i];
 		}
 		for (i = 0; i < pp.length(); i++)
 			p[i] = pp[i];
@@ -114,6 +116,7 @@ public:
 		return my_guess;
 	}
 
+
 	void set_solutions(vector<string>& sols){
 		solutions = sols;
 	}
@@ -133,21 +136,16 @@ private:
 	vector<string> solutions;
 };
 
-int main()
-{
+int main(){
 	GuessMyNumber gn;
 	string testiii;
 	int maxguess = 8;
 	int choice;
 
-
-
 	cout << "請選擇要甚麼功能(1是我們猜，2是電腦猜，3是看電腦互猜，4是結束程式)" << endl;
 	cin >> choice;
-	while (choice != 4)
-	{
-		if (choice == 1)//自己猜數字
-		{
+	while (choice != 4) {
+		if (choice == 1){   //自己猜數字
 			while (gn.size() > 0) {
 				cout << "Your guess: ";
 				string guess;
@@ -166,7 +164,6 @@ int main()
 				}
 				gn.set_solutions(best_sols);
 				cout << bestA << "A" << bestB << "B" << endl;
-
 				if (bestA == 4) {
 					cout << "恭喜猜對了" << endl;
 					break;
@@ -178,6 +175,7 @@ int main()
 					cout << "-----" << endl;
 				}
 			}
+			vector<string> solutions(0);
 			cout << "請選擇要甚麼功能(1是我們猜，2是電腦猜，3是看電腦互猜，4是結束程式)" << endl;
 			cin >> choice;
 		}
@@ -190,46 +188,50 @@ int main()
 				cin >> A >> B;
 
 				gn.trim(A, B);
-	
-				if (gn.size()  == 1) {
+
+				if (gn.size() == 1) {
 					cout << "I got it!" << endl;
 					break;
 				}
 				if (gn.size() == 0) {
 					cout << "No way!" << endl;
 					break;
-				}	
+				}
 			}
 			cout << "請選擇要甚麼功能(1是我們猜，2是電腦猜，3是看電腦互猜，4是結束程式)" << endl;
 			cin >> choice;
 		}
-		else if (choice == 3)
-		{
-			while (gn.size() > 1) {
+		else if (choice == 3) {
+			unsigned seed;
+			seed = (unsigned)time(NULL); // 取得時間序列
+			srand(seed); // 以時間序列當亂數種子
+			int testbbb[4] = { 0 };
+			int k;
+
+			for (int k = 0; k < 4; k++)
+				for (int m = 0; m < k; m++)
+					while (testbbb[m] == testbbb[k])testbbb[k] = rand() % 10;
+			while (gn.size() > 0) {
+				printf("答案是");
+				for (int k = 0; k < 4; k++)	printf("%d", testbbb[k]);
+				printf("\n");
 				int A, B;
 				aas = &A;
 				bbs = &B;
 
 				testiii = gn.guess();
 				cout << testiii << endl;
-				gn.testsee(testiii);
-
+				gn.testsee(testiii, testbbb);
 				gn.trim(A, B);
-	
 				if (A == 4) {
 					cout << "I got it!" << endl;
-					break;
-				}
-				if (gn.size() == 0) {
-					cout << "No way!" << endl;
 					break;
 				}
 			}
 			cout << "請選擇要甚麼功能(1是我們猜，2是電腦猜，3是看電腦互猜，4是結束程式)" << endl;
 			cin >> choice;
 		}
-		else
-		{
+		else {
 			cout << "程式結束" << endl;
 			break;
 		}
