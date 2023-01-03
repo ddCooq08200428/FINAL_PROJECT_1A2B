@@ -142,7 +142,7 @@ int main()
 
 
 
-	cout << "請選擇要甚麼功能(1是我們猜，2是電腦猜，3是看電腦互猜，4是結束程式)" << endl;
+	cout << "請選擇要甚麼功能(1是我們猜，2是電腦猜，3是電腦互猜，4是結束程式)" << endl;
 	cin >> choice;
 	while (choice != 4)
 	{
@@ -178,7 +178,7 @@ int main()
 					cout << "-----" << endl;
 				}
 			}
-			cout << "請選擇要甚麼功能(1是我們猜，2是電腦猜，3是看電腦互猜，4是結束程式)" << endl;
+			cout << "請選擇要甚麼功能(1是我們猜，2是電腦猜，3是電腦互猜，4是結束程式)" << endl;
 			cin >> choice;
 		}
 		else if (choice == 2)//電腦猜的程式
@@ -200,12 +200,12 @@ int main()
 					break;
 				}	
 			}
-			cout << "請選擇要甚麼功能(1是我們猜，2是電腦猜，3是看電腦互猜，4是結束程式)" << endl;
+			cout << "請選擇要甚麼功能(1是我們猜，2是電腦猜，3是電腦互猜，4是結束程式)" << endl;
 			cin >> choice;
 		}
 		else if (choice == 3)
 		{
-			while (gn.size() > 1) {
+			while (gn.size() > 0) {
 				int A, B;
 				aas = &A;
 				bbs = &B;
@@ -225,7 +225,7 @@ int main()
 					break;
 				}
 			}
-			cout << "請選擇要甚麼功能(1是我們猜，2是電腦猜，3是看電腦互猜，4是結束程式)" << endl;
+			cout << "請選擇要甚麼功能(1是我們猜，2是電腦猜，3是電腦互猜，4是結束程式)" << endl;
 			cin >> choice;
 		}
 		else
