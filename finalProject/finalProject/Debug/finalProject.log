@@ -1,4 +1,0 @@
-﻿  main.cpp
-c:\users\user\desktop\final_project\finalproject\finalproject\main.cpp(103): warning C4018: '<': signed/unsigned 不相符
-c:\users\user\desktop\final_project\finalproject\finalproject\main.cpp(219): warning C4101: 'k': 未參考的區域變數
-  finalProject.vcxproj -> C:\Users\User\Desktop\final_project\finalProject\Debug\finalProject.exe

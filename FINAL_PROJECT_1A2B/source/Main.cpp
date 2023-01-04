@@ -9,8 +9,6 @@
 #include <time.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <windows.h>
-#include <malloc.h>
 #include <conio.h>
 
 using namespace std;
