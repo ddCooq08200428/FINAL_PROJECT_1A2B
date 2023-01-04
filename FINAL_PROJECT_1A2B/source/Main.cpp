@@ -236,8 +236,6 @@ int main() {
 				for (int m = 0; m < k; m++)
 					while (testbbb[m] == testbbb[k])testbbb[k] = rand() % 10;
 			while (gn.size() > 0) {
-				printf("答案是");
-				for (int k = 0; k < 4; k++)	printf("%d", testbbb[k]);
 				printf("\n");
 				int A, B;
 				aas = &A;
@@ -248,7 +246,9 @@ int main() {
 				gn.testsee(testiii, testbbb);
 				gn.trim(A, B);
 				if (A == 4) {
-					cout << "I got it!" << endl;
+					printf("答案是");
+					for (int k = 0; k < 4; k++)	printf("%d", testbbb[k]);
+					cout << "\nI got it!" << endl;
 					gn.resetting();
 					break;
 				}
