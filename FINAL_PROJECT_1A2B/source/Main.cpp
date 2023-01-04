@@ -28,11 +28,11 @@ public:
 			solutions.push_back(os.str());
 			solutions.erase(remove_if(solutions.begin(), solutions.end(),
 				[](string& s) {
-					for (int j = 1; j < 4; ++j)
-						for (int k = 0; k < j; ++k)
-							if (s[j] == s[k]) return true;
-					return false;
-				}), solutions.end());
+				for (int j = 1; j < 4; ++j)
+					for (int k = 0; k < j; ++k)
+						if (s[j] == s[k]) return true;
+				return false;
+			}), solutions.end());
 		}
 	}
 	void GuessNumber() {
@@ -44,11 +44,11 @@ public:
 		}
 		solutions.erase(remove_if(solutions.begin(), solutions.end()
 			, [](string& s) {
-				for (int j = 0; j < 4; ++j)
-					for (int k = 0; k < j; ++k)
-						if (s[j] == s[k]) return true;
-				return false;
-			}), solutions.end());
+			for (int j = 0; j < 4; ++j)
+				for (int k = 0; k < j; ++k)
+					if (s[j] == s[k]) return true;
+			return false;
+		}), solutions.end());
 	}
 
 	GuessMyNumber() {
@@ -59,11 +59,11 @@ public:
 		}
 		solutions.erase(remove_if(solutions.begin(), solutions.end(),
 			[](string& s) {
-				for (int j = 0; j < 4; ++j)
-					for (int k = 0; k < j; ++k)
-						if (s[j] == s[k]) return true;
-				return false;
-			}), solutions.end());
+			for (int j = 0; j < 4; ++j)
+				for (int k = 0; k < j; ++k)
+					if (s[j] == s[k]) return true;
+			return false;
+		}), solutions.end());
 	}
 
 
@@ -72,30 +72,30 @@ public:
 		string cur = my_guess;
 		solutions.erase(remove_if(solutions.begin(), solutions.end(),
 			[=](string& str) {
-				int AA = A, BB = B;
-				for (int j = 0; j < 4; ++j) {
-					if (str[j] == cur[j]) --AA;
-					for (int k = 0; k < 4; ++k)
-						if (j != k && str[j] == cur[k]) --BB;
-				}
-				if (AA == 0 && BB == 0) return false;
-				else return true;
-			}), solutions.end());
+			int AA = A, BB = B;
+			for (int j = 0; j < 4; ++j) {
+				if (str[j] == cur[j]) --AA;
+				for (int k = 0; k < 4; ++k)
+					if (j != k && str[j] == cur[k]) --BB;
+			}
+			if (AA == 0 && BB == 0) return false;
+			else return true;
+		}), solutions.end());
 	}
 
 	vector<string> trim(int A, int B, string cur) {
 		vector<string> sols{ solutions };
 		sols.erase(remove_if(sols.begin(), sols.end(),
 			[=](string& str) {
-				int AA = A, BB = B;
-				for (int j = 0; j < 4; ++j) {
-					if (str[j] == cur[j]) --AA;
-					for (int k = 0; k < 4; ++k)
-						if (j != k && str[j] == cur[k]) --BB;
-				}
-				if (AA == 0 && BB == 0) return false;
-				else return true;
-			}), sols.end());;
+			int AA = A, BB = B;
+			for (int j = 0; j < 4; ++j) {
+				if (str[j] == cur[j]) --AA;
+				for (int k = 0; k < 4; ++k)
+					if (j != k && str[j] == cur[k]) --BB;
+			}
+			if (AA == 0 && BB == 0) return false;
+			else return true;
+		}), sols.end());;
 		return sols;
 	}
 
@@ -165,10 +165,10 @@ int main() {
 	int maxguess = 8;
 	int choice;
 
-	cout << "½Ğ¿ï¾Ü­n¬Æ»ò¥\¯à(1¬O§Ú­Ì²q¡A2¬O¹q¸£²q¡A3¬O¬İ¹q¸£¤¬²q¡A4¬Oµ²§ôµ{¦¡)" << endl;
+	cout << "è«‹é¸æ“‡è¦ç”šéº¼åŠŸèƒ½(1æ˜¯æˆ‘å€‘çŒœï¼Œ2æ˜¯é›»è…¦çŒœï¼Œ3æ˜¯çœ‹é›»è…¦äº’çŒœï¼Œ4æ˜¯çµæŸç¨‹å¼)" << endl;
 	cin >> choice;
 	while (choice != 4) {
-		if (choice == 1) {   //¦Û¤v²q¼Æ¦r
+		if (choice == 1) {   //è‡ªå·±çŒœæ•¸å­—
 			while (gn.size() > 0) {
 				cout << "Your guess: ";
 				string guess;
@@ -188,23 +188,23 @@ int main() {
 				gn.set_solutions(best_sols);
 				cout << bestA << "A" << bestB << "B" << endl;
 				if (bestA == 4) {
-					cout << "®¥³ß²q¹ï¤F" << endl;
+					cout << "æ­å–œçŒœå°äº†" << endl;
 					gn.resetting();
 					break;
 				}
 				else if (gn.size() < 20) {
 					cout << "-----" << endl;
-					cout << "´£¥Ü:" << endl;
+					cout << "æç¤º:" << endl;
 					gn.show();
 					cout << "-----" << endl;
 				}
 			}
-			cout << "½Ğ¿ï¾Ü­n¬Æ»ò¥\¯à(1¬O§Ú­Ì²q¡A2¬O¹q¸£²q¡A3¬O¬İ¹q¸£¤¬²q¡A4¬Oµ²§ôµ{¦¡)" << endl;
+			cout << "è«‹é¸æ“‡è¦ç”šéº¼åŠŸèƒ½(1æ˜¯æˆ‘å€‘çŒœï¼Œ2æ˜¯é›»è…¦çŒœï¼Œ3æ˜¯çœ‹é›»è…¦äº’çŒœï¼Œ4æ˜¯çµæŸç¨‹å¼)" << endl;
 			cin >> choice;
 		}
-		else if (choice == 2)//¹q¸£²qªºµ{¦¡
+		else if (choice == 2)//é›»è…¦çŒœçš„ç¨‹å¼
 		{
-			while (gn.size() > 0) {
+			while (gn.size() > 1) {
 				cout << gn.guess() << endl;
 				cout << "? A ? B" << endl;
 				int A, B;
@@ -213,22 +213,22 @@ int main() {
 				gn.trim(A, B);
 
 				if (gn.size() == 1) {
+					printf("ç­”æ¡ˆæ˜¯:");
+					gn.show();
 					cout << "I got it!" << endl;
 					gn.resetting();
-					break;
 				}
-				if (gn.size() == 0) {
+				if (gn.size() == 0)
 					cout << "No way!" << endl;
-					break;
-				}
 			}
-			cout << "½Ğ¿ï¾Ü­n¬Æ»ò¥\¯à(1¬O§Ú­Ì²q¡A2¬O¹q¸£²q¡A3¬O¬İ¹q¸£¤¬²q¡A4¬Oµ²§ôµ{¦¡)" << endl;
+
+			cout << "è«‹é¸æ“‡è¦ç”šéº¼åŠŸèƒ½(1æ˜¯æˆ‘å€‘çŒœï¼Œ2æ˜¯é›»è…¦çŒœï¼Œ3æ˜¯çœ‹é›»è…¦äº’çŒœï¼Œ4æ˜¯çµæŸç¨‹å¼)" << endl;
 			cin >> choice;
 		}
 		else if (choice == 3) {
 			unsigned seed;
-			seed = (unsigned)time(NULL); // ¨ú±o®É¶¡§Ç¦C
-			srand(seed); // ¥H®É¶¡§Ç¦C·í¶Ã¼ÆºØ¤l
+			seed = (unsigned)time(NULL); // å–å¾—æ™‚é–“åºåˆ—
+			srand(seed); // ä»¥æ™‚é–“åºåˆ—ç•¶äº‚æ•¸ç¨®å­
 			int testbbb[4] = { 0 };
 			int k;
 
@@ -236,7 +236,7 @@ int main() {
 				for (int m = 0; m < k; m++)
 					while (testbbb[m] == testbbb[k])testbbb[k] = rand() % 10;
 			while (gn.size() > 0) {
-				printf("µª®×¬O");
+				printf("ç­”æ¡ˆæ˜¯");
 				for (int k = 0; k < 4; k++)	printf("%d", testbbb[k]);
 				printf("\n");
 				int A, B;
@@ -253,14 +253,13 @@ int main() {
 					break;
 				}
 			}
-			
-			cout << "½Ğ¿ï¾Ü­n¬Æ»ò¥\¯à(1¬O§Ú­Ì²q¡A2¬O¹q¸£²q¡A3¬O¬İ¹q¸£¤¬²q¡A4¬Oµ²§ôµ{¦¡)" << endl;
+
+			cout << "è«‹é¸æ“‡è¦ç”šéº¼åŠŸèƒ½(1æ˜¯æˆ‘å€‘çŒœï¼Œ2æ˜¯é›»è…¦çŒœï¼Œ3æ˜¯çœ‹é›»è…¦äº’çŒœï¼Œ4æ˜¯çµæŸç¨‹å¼)" << endl;
 			cin >> choice;
 		}
 		else {
-			cout << "µ{¦¡µ²§ô" << endl;
+			cout << "ç¨‹å¼çµæŸ" << endl;
 			break;
 		}
 	}
 }
-
