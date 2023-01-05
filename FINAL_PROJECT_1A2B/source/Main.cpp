@@ -21,18 +21,19 @@ int flag = 0;
 class GuessMyNumber {
 public:
 
-	void resetting() {
-		for (int i = 0; i < 10000; i++) {
-			stringstream os;
-			os << setfill('0') << setw(4) << i;
-			solutions.push_back(os.str());
+	void resetting() { //重新設定數值
+		for (int i = 0; i < 10000; i++) { //利用迴圈跑過0到9999整數
+			stringstream os; //整數寫入stringstream os
+			os << setfill('0') << setw(4) << i; //設定格式為四個字元、不足的前面補零
+			solutions.push_back(os.str()); //用 os.str() 取出已寫入 stream 中的字串，然後
+										   //用 push_back 放入 vector solutions 中
 			solutions.erase(remove_if(solutions.begin(), solutions.end(),
-				[](string& s) {
+				[](string& s) {  //用 erase 搭配 remove_if過濾掉不符規定的(有重複數字的)字串
 				for (int j = 1; j < 4; ++j)
 					for (int k = 0; k < j; ++k)
-						if (s[j] == s[k]) return true;
-				return false;
-			}), solutions.end());
+						if (s[j] == s[k]) return true; //檢查一個字串當中，是否包含重複的數字，如果有的話就傳回 true        
+				return false; //如果數字都不相同，就傳回 false。
+			}), solutions.end()); //清除到原本的 end()，就會把那些該被過濾的元素從vector當中移除
 		}
 	}
 	void GuessNumber() {
@@ -154,7 +155,7 @@ public:
 private:
 	mt19937 rng;
 	string my_guess;
-	vector<string> solutions;
+	vector<string> solutions; //用字串表達每個4位數，把可能數字放在vector裡
 };
 
 
@@ -165,7 +166,7 @@ int main() {
 	int maxguess = 8;
 	int choice;
 
-	cout << "請選擇要甚麼功能(1是我們猜，2是電腦猜，3是看電腦互猜，4是結束程式)" << endl;
+	cout << "Please choose what function you want(1: our guess, 2: computer guess, 3: computer mutual guessing, 4: end)" << endl;
 	cin >> choice;
 	while (choice != 4) {
 		if (choice == 1) {   //自己猜數字
@@ -177,7 +178,7 @@ int main() {
 				int bestA = 0, bestB = 0;
 				for (int A = 0; A <= 4; ++A) {
 					for (int B = 0; B <= 4 - A; ++B) {
-						vector<string> sols = gn.trim(A, B, guess);
+						vector<string> sols = gn.trim(A, B, guess); //用 trim 把不符合的字串刪
 						if (best_sols.size() < sols.size()) {
 							best_sols = sols;
 							bestA = A;
@@ -188,18 +189,18 @@ int main() {
 				gn.set_solutions(best_sols);
 				cout << bestA << "A" << bestB << "B" << endl;
 				if (bestA == 4) {
-					cout << "恭喜猜對了" << endl;
+					printf("Correct\n");
 					gn.resetting();
 					break;
 				}
 				else if (gn.size() < 20) {
 					cout << "-----" << endl;
-					cout << "提示:" << endl;
+					cout << "Hint:" << endl;
 					gn.show();
 					cout << "-----" << endl;
 				}
 			}
-			cout << "請選擇要甚麼功能(1是我們猜，2是電腦猜，3是看電腦互猜，4是結束程式)" << endl;
+			cout << "Please choose what function you want(1: our guess, 2: computer guess, 3: computer mutual guessing, 4: end)" << endl;
 			cin >> choice;
 		}
 		else if (choice == 2)//電腦猜的程式
@@ -213,16 +214,20 @@ int main() {
 				gn.trim(A, B);
 
 				if (gn.size() == 1) {
-					printf("答案是:");
+					printf("Answer:");
 					gn.show();
 					cout << "I got it!" << endl;
-					gn.resetting();
+					//gn.resetting();
+					break;
 				}
-				if (gn.size() == 0)
+				if (gn.size() == 0) {
 					cout << "No way!" << endl;
+					//gn.resetting();
+					break;
+				}
 			}
-
-			cout << "請選擇要甚麼功能(1是我們猜，2是電腦猜，3是看電腦互猜，4是結束程式)" << endl;
+			gn.resetting();
+			cout << "Please choose what function you want(1: our guess, 2: computer guess, 3: computer mutual guessing, 4: end)" << endl;
 			cin >> choice;
 		}
 		else if (choice == 3) {
@@ -246,19 +251,18 @@ int main() {
 				gn.testsee(testiii, testbbb);
 				gn.trim(A, B);
 				if (A == 4) {
-					printf("答案是");
+					printf("answer:");
 					for (int k = 0; k < 4; k++)	printf("%d", testbbb[k]);
 					cout << "\nI got it!" << endl;
 					gn.resetting();
 					break;
 				}
 			}
-
-			cout << "請選擇要甚麼功能(1是我們猜，2是電腦猜，3是看電腦互猜，4是結束程式)" << endl;
+			cout << "Please choose what function you want(1: our guess, 2: computer guess, 3: computer mutual guessing, 4: end)" << endl;
 			cin >> choice;
 		}
 		else {
-			cout << "程式結束" << endl;
+			cout << "end of program" << endl;
 			break;
 		}
 	}
